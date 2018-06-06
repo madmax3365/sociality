@@ -184,6 +184,21 @@ router.post('/experience', passport.authenticate('jwt', {
 		profile.save().then(profile => res.json(profile));
 	});
 });
+
+// Delete experience
+router.delete('/experience/:exp_id', passport.authenticate('jwt', {
+	session: false
+}), (req, res) => {
+	Profile.findOne({
+			user: req.user.id
+		})
+		.then(profile => {
+			const deleteIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+			profile.experience.splice(deleteIndex, 1);
+			profile.save().then(profile => res.json(profile)).catch(err => res.status(400).json(err));
+		});
+});
+
 // Add education
 router.post('/education', passport.authenticate('jwt', {
 	session: false
@@ -210,6 +225,36 @@ router.post('/education', passport.authenticate('jwt', {
 		profile.education.unshift(newEdu);
 		profile.save().then(profile => res.json(profile));
 	});
+});
+
+// Delete education
+router.delete('/education/:edu_id', passport.authenticate('jwt', {
+	session: false
+}), (req, res) => {
+	Profile.findOne({
+			user: req.user.id
+		})
+		.then(profile => {
+			const deleteIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+			profile.education.splice(deleteIndex, 1);
+			profile.save().then(profile => res.json(profile)).catch(err => res.status(400).json(err));
+		});
+});
+
+//Delete user and profile
+router.delete('/', passport.authenticate('jwt', {
+	session: false
+}), (req, res) => {
+	Profile.findByIdAndRemove({
+			user: req.user.id
+		})
+		.then(() => {
+			User.findOneAndRemove({
+				_id: req.user.id
+			});
+		}).then(() => res.json({
+			success: true
+		}));
 });
 
 
