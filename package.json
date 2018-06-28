@@ -8,14 +8,18 @@
     "url": "https://github.com/madmax3365/sociality.git"
   },
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Gago",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
     "express": "^4.16.3",
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.2.2",
@@ -25,8 +29,11 @@
     "validator": "^10.3.0"
   },
   "devDependencies": {
+    "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.9.1",
-    "nodemon": "^1.17.5"
+    "file-loader": "^1.1.11",
+    "nodemon": "^1.17.5",
+    "style-loader": "^0.21.0"
   }
 }

@@ -17,6 +17,7 @@ module.exports = {
 	rules: {
 		'linebreak-style': ['error', 'unix'],
 		quotes: ['error', 'single'],
-		semi: ['error', 'always']
+		semi: ['error', 'always'],
+		'react/display-name': [0]
 	}
 };

@@ -29,7 +29,6 @@ app.use(passport.initialize());
 
 // Passport config
 require('./config/passport')(passport);
-
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
