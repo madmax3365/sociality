@@ -5,7 +5,8 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
 	module: {
 		rules: [
@@ -38,6 +39,7 @@ module.exports = {
 	],
 	devServer: {
 		compress: true,
+		historyApiFallback: true,
 		port: 9000,
 		proxy: {
 			'/api': {
