@@ -15,6 +15,7 @@ const TextFieldGroup = props => {
 				name={props.name}
 				value={props.value}
 				onChange={props.onChange}
+				disabled={props.disabled}
 			/>
 			{props.info && (
 				<small className="form-text text-muted">{props.info}</small>
@@ -31,11 +32,13 @@ TextFieldGroup.propTypes = {
 	name: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
-	info: PropTypes.string
+	info: PropTypes.string,
+	disabled: PropTypes.string
 };
 
 TextFieldGroup.defaultProps = {
-	type: 'text'
+	type: 'text',
+	disabled: ''
 };
 
 export default TextFieldGroup;

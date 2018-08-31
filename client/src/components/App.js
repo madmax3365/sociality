@@ -16,6 +16,9 @@ import Dashboard from './dashboard/Dashboard';
 import { clearCurrentProfile } from '../actions/profileActions';
 import PrivateRoute from './common/PrivateRoute';
 import CreateProfile from './create-profile/CreateProfile';
+import EditProfile from './edit-profile/EditProfile';
+import AddExperience from './add-credentials/AddExperience';
+import AddEducation from './add-credentials/AddEducation';
 
 if (localStorage.jwToken) {
 	setAuthToken(localStorage.jwToken);
@@ -49,6 +52,21 @@ export default class App extends Component {
 								exact
 								path="/create-profile"
 								component={CreateProfile}
+							/>
+							<PrivateRoute
+								exact
+								path="/edit-profile"
+								component={EditProfile}
+							/>
+							<PrivateRoute
+								exact
+								path="/add-experience"
+								component={AddExperience}
+							/>
+							<PrivateRoute
+								exact
+								path="/add-education"
+								component={AddEducation}
 							/>
 						</Switch>
 						<Footer />

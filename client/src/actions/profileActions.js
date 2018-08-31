@@ -46,11 +46,9 @@ export const createProfile = (profileData, history) => dispatch => {
 };
 
 // Clear current profile from state
-export const clearCurrentProfile = () => {
-	return {
-		type: CLEAR_CURRENT_PROFILE
-	};
-};
+export const clearCurrentProfile = () => ({
+	type: CLEAR_CURRENT_PROFILE
+});
 
 // Delete Account
 export const deleteAccount = () => dispatch => {
@@ -74,4 +72,48 @@ export const deleteAccount = () => dispatch => {
 				});
 			});
 	}
+};
+
+// Add Experience
+export const addExperience = (experienceData, history) => dispatch => {
+	axios
+		.post('api/profile/experience', experienceData)
+		.then(() => history.push('/dashboard'))
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
+};
+// Add Experience
+export const addEducation = (educationData, history) => dispatch => {
+	axios
+		.post('api/profile/education', educationData)
+		.then(() => history.push('/dashboard'))
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
+};
+
+// Delete Experience
+
+export const deleteExperience = id => dispatch => {
+	axios
+		.delete(`api/profile/experience/${id}`)
+		.then(res =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: res.data
+			})
+		)
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
 };
