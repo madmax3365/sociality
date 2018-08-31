@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logoutUser } from '../../actions/authActions';
+import { clearCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
 	handleClick = () => {
 		this.props.logoutUser();
-		this.props.history.push('/');
 	};
+
 	render() {
 		const { isAuthenticated, user } = this.props.auth;
 		const guestLinks = (
@@ -74,7 +75,8 @@ class Navbar extends Component {
 Navbar.propTypes = {
 	auth: PropTypes.object.isRequired,
 	logoutUser: PropTypes.func.isRequired,
-	history: PropTypes.object
+	history: PropTypes.object.isRequired,
+	clearCurrentProfile: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -83,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ logoutUser }
+	{ logoutUser, clearCurrentProfile }
 )(Navbar);
