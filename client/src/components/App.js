@@ -19,6 +19,8 @@ import CreateProfile from './create-profile/CreateProfile';
 import EditProfile from './edit-profile/EditProfile';
 import AddExperience from './add-credentials/AddExperience';
 import AddEducation from './add-credentials/AddEducation';
+import Profiles from './profiles/Profiles';
+import Profile from './profile/Profile';
 
 if (localStorage.jwToken) {
 	setAuthToken(localStorage.jwToken);
@@ -44,6 +46,7 @@ export default class App extends Component {
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
+						<Route exact path="/profile/:handle" component={Profile} />
 						<Switch>
 							<PrivateRoute exact path="/dashboard" component={Dashboard} />
 						</Switch>
@@ -69,6 +72,7 @@ export default class App extends Component {
 								component={AddEducation}
 							/>
 						</Switch>
+						<Route exact path="/profiles" component={Profiles} />
 						<Footer />
 					</div>
 				</Router>
