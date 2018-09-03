@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
 
 const ProfileHeader = props => {
@@ -11,7 +12,12 @@ const ProfileHeader = props => {
 	const social = [];
 	for (const title in profile.social) {
 		const item = (
-			<a className="text-white p-2" href={profile.social[title]} key={title}>
+			<a
+				className="text-white p-2"
+				href={profile.social[title]}
+				key={title}
+				rel="noopener noreferrer"
+				target="_blank">
 				<i className={`fab fa-${title} fa-2x`} />
 			</a>
 		);
@@ -40,7 +46,11 @@ const ProfileHeader = props => {
 						</p>
 						<p>
 							{profile.website && (
-								<a className="text-white p-2" href={profile.website}>
+								<a
+									className="text-white p-2"
+									href={profile.website}
+									rel="noopener noreferrer"
+									target="_blank">
 									<i className="fas fa-globe fa-2x" />
 								</a>
 							)}
@@ -52,6 +62,9 @@ const ProfileHeader = props => {
 			</div>
 		</div>
 	);
+};
+ProfileHeader.propTypes = {
+	profile: PropTypes.object
 };
 
 export default ProfileHeader;

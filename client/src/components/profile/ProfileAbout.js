@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
 
 const ProfileAbout = props => {
@@ -27,6 +28,9 @@ const ProfileAbout = props => {
 			</div>
 		</div>
 	);
+};
+ProfileAbout.propTypes = {
+	profile: PropTypes.object
 };
 
 export default ProfileAbout;

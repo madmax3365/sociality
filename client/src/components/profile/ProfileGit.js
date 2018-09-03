@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
 
 class ProfileGit extends Component {
@@ -8,16 +8,15 @@ class ProfileGit extends Component {
 		this.state = {
 			clientId: '4a92021aec0cb80981cc',
 			clientSecret: '76e9ee979ba2f078fdf1dad880e2f365878af332',
-			sort: 'created:desc',
 			count: 5,
 			repos: []
 		};
 	}
 	componentDidMount() {
 		const { username } = this.props;
-		const { clientId, clientSecret, count, sort } = this.state;
+		const { clientId, clientSecret, count } = this.state;
 		fetch(
-			`https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
+			`https://api.github.com/users/${username}/repos?per_page=${count}&sort=updated&order=desc&client_id=${clientId}&client_secret=${clientSecret}`
 		)
 			.then(res => res.json())
 			.then(data => this.setState({ repos: data }))
@@ -33,9 +32,13 @@ class ProfileGit extends Component {
 					<div className="row">
 						<div className="col-md-6">
 							<h4>
-								<Link to={repo.html_url} className="text-info" target="_blank">
+								<a
+									href={repo.html_url}
+									className="text-info"
+									rel="noopener noreferrer"
+									target="_blank">
 									{repo.name}
-								</Link>
+								</a>
 							</h4>
 							<p>{repo.description}</p>
 						</div>
@@ -52,7 +55,7 @@ class ProfileGit extends Component {
 				</div>
 			))
 		);
-		console.log(repos);
+
 		return (
 			<div>
 				<hr />
@@ -62,5 +65,8 @@ class ProfileGit extends Component {
 		);
 	}
 }
+ProfileGit.propTypes = {
+	username: PropTypes.string
+};
 
 export default ProfileGit;
