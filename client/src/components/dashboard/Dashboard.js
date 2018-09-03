@@ -6,22 +6,24 @@ import { Link } from 'react-router-dom';
 import {
 	getCurrentProfile,
 	deleteAccount,
-	deleteExperience
+	deleteExperience,
+	deleteEducation
 } from '../../actions/profileActions';
 import isEmpty from '../../validation/is-empty';
 
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
+import Education from './Education';
 
 class Dashboard extends Component {
 	componentDidMount() {
 		this.props.getCurrentProfile();
 	}
 
-	deleteExp = id => {
-		this.props.deleteExperience(id);
-	};
+	deleteExp = id => this.props.deleteExperience(id);
+
+	deleteEdu = id => this.props.deleteEducation(id);
 
 	render() {
 		const { user } = this.props.auth;
@@ -41,6 +43,11 @@ class Dashboard extends Component {
 						<Experience
 							experience={profile.experience}
 							handleDelete={this.deleteExp}
+						/>
+
+						<Education
+							education={profile.education}
+							handleDelete={this.deleteEdu}
 						/>
 						<div style={{ marginTop: '60px' }} />
 						<button
@@ -88,10 +95,11 @@ Dashboard.propTypes = {
 	getCurrentProfile: PropTypes.func.isRequired,
 	deleteAccount: PropTypes.func.isRequired,
 	history: PropTypes.object.isRequired,
-	deleteExperience: PropTypes.func.isRequired
+	deleteExperience: PropTypes.func.isRequired,
+	deleteEducation: PropTypes.func.isRequired
 };
 
 export default connect(
 	mapStateToProps,
-	{ getCurrentProfile, deleteAccount, deleteExperience }
+	{ getCurrentProfile, deleteAccount, deleteExperience, deleteEducation }
 )(Dashboard);
