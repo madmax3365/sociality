@@ -43,7 +43,11 @@ const ProfileHeader = props => {
 								  }`}
 						</p>
 						<p>
-							{!isEmpty(currentJob) ? currentJob[0].location : profile.location}
+							{!isEmpty(currentJob)
+								? currentJob[0].location
+								: profile.location
+									? profile.location
+									: ''}
 						</p>
 						<p>
 							{profile.website && (
