@@ -1,4 +1,4 @@
-module.exports =
+
 	process.env.NODE_ENV === 'production'
-		? require('./keys_prod')
-		: require('./keys_dev');
+		? module.exports =require('./keys_prod')
+		: module.exports =require('./keys_dev');
