@@ -132,6 +132,7 @@ class CreateProfile extends Component {
 								<TextFieldGroup
 									placeholder="* Profile handle"
 									name="handle"
+									disabled="disabled"
 									value={this.state.handle}
 									onChange={this.handleChange}
 									error={errors.handle}

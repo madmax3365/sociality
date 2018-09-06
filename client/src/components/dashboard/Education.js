@@ -28,10 +28,14 @@ const Education = props => {
 			</tr>
 		))
 	) : (
-		<h5>
-			You haven
-			{'\''}t added education information yet
-		</h5>
+		<tr>
+			<td>
+				<h5>
+					You haven
+					{'\''}t added education information yet
+				</h5>
+			</td>
+		</tr>
 	);
 	return (
 		<div>

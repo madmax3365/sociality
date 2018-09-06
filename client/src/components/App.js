@@ -6,12 +6,13 @@ import setAuthToken from '../utils/setAuthToken';
 import { setCurrentUser, logoutUser } from '../actions/authActions';
 
 import store from '../store';
+import '../App.css';
+
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
 import Landing from './layout/Landing';
 import Login from './auth/Login';
 import Register from './auth/Register';
-import '../App.css';
 import Dashboard from './dashboard/Dashboard';
 import { clearCurrentProfile } from '../actions/profileActions';
 import PrivateRoute from './common/PrivateRoute';
@@ -21,6 +22,8 @@ import AddExperience from './add-credentials/AddExperience';
 import AddEducation from './add-credentials/AddEducation';
 import Profiles from './profiles/Profiles';
 import Profile from './profile/Profile';
+import Posts from './posts/Posts';
+import Post from './post/Post';
 
 if (localStorage.jwToken) {
 	setAuthToken(localStorage.jwToken);
@@ -47,8 +50,13 @@ export default class App extends Component {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/profile/:handle" component={Profile} />
+
 						<Switch>
 							<PrivateRoute exact path="/dashboard" component={Dashboard} />
+						</Switch>
+						<Switch>
+							<PrivateRoute exact path="/feed" component={Posts} />
+							<PrivateRoute exact path="/feed/:id" component={Post} />
 						</Switch>
 						<Switch>
 							<PrivateRoute

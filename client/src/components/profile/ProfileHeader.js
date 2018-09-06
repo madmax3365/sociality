@@ -38,8 +38,9 @@ const ProfileHeader = props => {
 						<p className="lead text-center">
 							{!isEmpty(currentJob)
 								? `${currentJob[0].title} at ${currentJob[0].company}`
-								: `${profile.status} ${profile.company &&
-										`at ${profile.company}`}`}
+								: `${profile.status} ${
+										profile.company ? `at ${profile.company}` : ''
+								  }`}
 						</p>
 						<p>
 							{!isEmpty(currentJob) ? currentJob[0].location : profile.location}

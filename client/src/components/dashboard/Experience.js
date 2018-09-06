@@ -28,10 +28,14 @@ const Experience = props => {
 			</tr>
 		))
 	) : (
-		<h5>
-			You haven
-			{'\''}t added experience yet
-		</h5>
+		<tr>
+			<td>
+				<h5>
+					You haven
+					{'\''}t added experience yet
+				</h5>
+			</td>
+		</tr>
 	);
 	return (
 		<div>
